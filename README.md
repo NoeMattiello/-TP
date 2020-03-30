@@ -1,3 +1,4 @@
 # BMP_Filter
-Read me
-Well done
+MATTIELLO Noé
+VICART Antoine
+DELEMOTTE Remy
