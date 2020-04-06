@@ -274,6 +274,7 @@ void applyFilterSimpleBlur(BITMAP *bmp)
 {
     /* TODO */
     /* Considering each color channel of a pixel as the average result of the 9 pixels matrix centered on it */
+    /*I'm taking care of this part, it's me remy en b2b*/
 }
 
 /*
