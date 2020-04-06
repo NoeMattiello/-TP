@@ -15,6 +15,14 @@
 #define BITMAP_H
 #endif
 
+
+/*
+
+TEST DES COMMIT
+
+*/
+
+
 BITMAP *loadBitmap(const char *file_path)
 {
     FILE *fp = NULL;
