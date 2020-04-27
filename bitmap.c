@@ -274,13 +274,33 @@ void applyFilterSimpleBlur(BITMAP *bmp)
 {
     /* TODO */
      /* Considering each color channel of a pixel as the average result of the 9 pixels matrix centered on it */
-   	PIXEL *blur;
-	int i;
-	i = bmp->width * bmp->height;
-	for (blur = bmp->raster;  i > 0; blur++, i--) {
-		blur->green = 0;
+   	float v=1.0 / 9.0;						
+	float kernel[3][3]={{v,v,v},
+						{v,v,v},
+						{v,v,v}};
+
+	for(x=1;x<height-1;x++)
+	{					
+		for(y=1;y<width-1;y++)
+		{
+			float sum0= 0.0;
+			float sum1= 0.0;
+			float sum2= 0.0;
+			for(i=-1;i<=1;++i)
+			{
+				for(j=-1;j<=1;++j)
+				{	
+					
+					sum0=sum0+(float)kernel[i+1][j+1]*buffer[(x+i)*width+(y+j)][0];
+					sum1=sum1+(float)kernel[i+1][j+1]*buffer[(x+i)*width+(y+j)][1];
+					sum2=sum2+(float)kernel[i+1][j+1]*buffer[(x+i)*width+(y+j)][2];
+				}
+			}
+			out[(x)*width+(y)][0]=sum0;
+			out[(x)*width+(y)][1]=sum1;
+			out[(x)*width+(y)][2]=sum2;
+		}
 	}
-}
 }
 
 /*
