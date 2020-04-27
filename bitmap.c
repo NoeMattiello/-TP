@@ -271,6 +271,35 @@ void setPixel(PIXEL *raster, int width, int height, int y, int x, PIXEL *value)
  */
 void applyFilterColor(BITMAP *bmp, FILTER filter)
 {
+    PIXEL *pxl;
+	int x;
+	
+	if (filter == getCorrespondingFilter("red"))
+    {
+
+		x = bmp->width * bmp->height;
+		for (pxl = bmp->raster;  x > 0; pxl++, x--) {
+			pxl->red = 0;
+		}
+		
+    } else if (filter == getCorrespondingFilter("green"))
+    {
+		
+		x = bmp->width * bmp->height;
+		for (pxl = bmp->raster;  x > 0; pxl++, x--) {
+			pxl->green = 0;
+		}
+		
+    } else if (filter == getCorrespondingFilter("blue"))
+    {
+		
+		x = bmp->width * bmp->height;
+		for (pxl = bmp->raster;  x > 0; pxl++, x--) {
+			pxl->blue = 0;
+		}
+		
+    }
+    
     /* TODO */
     /* Zeroing the specified color channel for every pixels */
 }
@@ -294,6 +323,17 @@ void applyFilterMirror(BITMAP *bmp)
 
 void applyFilter(BITMAP *bmp, FILTER filter)
 {
+    printf("choose");
+	if (filter == getCorrespondingFilter("blur"))
+    {
+		applyFilterSimpleBlur(bmp);
+    } else if (filter == getCorrespondingFilter("mirror"))
+    {
+		applyFilterMirror(bmp);
+    } else 
+	{
+		applyFilterColor(bmp, filter);
+    }
     /* TODO */
     /* Dispatcher that calls the right method regarding the filter to apply on the bitmap */
 }
